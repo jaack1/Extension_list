@@ -1,0 +1,10 @@
+<div id="header">
+  <a href="index">Главная</a><span>/</span>
+  <a href="numbers">Список внутренних номеров</a><span>/</span>
+  <a href="about">О портале</a><span>/</span>
+  {% if session['logged_in'] %}
+    <a href="logout">Выход</a>
+  {% else %}
+    <a href="signin">Вход</a>
+  {% endif %}
+</div>

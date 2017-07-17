@@ -1,0 +1,27 @@
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css') }}">
+  {% if title %}
+  <title>{{title}}</title>
+  {% else %}
+  <title>Welcome to Flasksite</title>
+  {% endif %}
+</head>
+<body>
+  {% include "header.html" %}
+  <div id="content">
+    <h1>Портал ФГБУ "Центр геодезии, картографии и ИПД"</h1>
+    <div id="center">
+      <img src="{{ url_for('static', filename='img/5.gif') }}"></img>
+<div id="box_text">
+        <p>  Администратор сайта запретил Вам доступ к этой странице.<br><br>
+    	Для просмотра содержимого необходимо <a href="signin">Войти на сайт</a>,
+      используя учетные данные корпоративной почты.</p>
+</div>
+    </div>
+  </div>
+  <div id="footer">
+ФГБУ "Центр геодезии, картографии и ИПД"
+  </div>
+</body>
+</html>

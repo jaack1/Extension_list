@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css') }}">
+    {% if title %}
+    <title>{{title}}</title>
+    {% else %}
+    <title>Welcome to Flasksite</title>
+    {% endif %}
+  </head>
+  <body>
+    {% include "header.html" %}
+    <div id="content">
+      <h1>Портал ФГБУ "Центр геодезии, картографии и ИПД"</h1>
+      <div id="center">
+        <img src="{{ url_for('static', filename='img/logo.png') }}"></img>
+	<div id="box_text">
+           <p>Добрый день
+            {% if session['username'] %}
+              <b>{{session['username']}}</b>
+            {% endif %}
+           !</p>
+           <p>Мы рады видеть Вас на портале ФГБУ "Центр геодезии, картографии и инфраструктуры пространственных данных".</p>
+	</div>
+      </div>
+    </div>
+    <div id="footer">
+	ФГБУ "Центр геодезии, картографии и ИПД"
+    </div>
+  </body>
+</html>

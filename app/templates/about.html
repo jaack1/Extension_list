@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css') }}">
+    {% if title %}
+    <title>{{title}}</title>
+    {% else %}
+    <title>Welcome to Flasksite</title>
+    {% endif %}
+  </head>
+  <body>
+    {% include "header.html" %}
+    <div id="content">
+      <h1>Портал ФГБУ "Центр геодезии, картографии и ИПД"</h1>
+      <div id="center">
+        <img src="{{ url_for('static', filename='img/logo.png') }}"></img>
+	<div id="box_text">
+          <p>Портал создан для удобства сотрудников <br>ФГБУ "ЦГКиИПД".</p>
+          <p>Автор идеи и разработчик: Ведущий инженер отдела технической поддержки
+          <b>Корнеев Евгений Александрович</b>.</p>
+          <p>На портале функционирует <a href="numbers">список внутренних номеров</a>, возможно добавление других
+          функций по пожеланиям сотрудников.</p>
+          <p>Вопросы и пожелания направлять по электронной почте <a href="mailto:korneev_ea@nsdi.rosreestr.ru?subject=Портал ФГБУ">korneev_ea@nsdi.rosreestr.ru</a> или по внутреннему номеру <b>373</b>.</p>
+          <p>Технологии, используемые на портале: Python 3.4, Flask 0.12.1, nginx 1.6.2, Gunicorn 19.7, Debian 8.</p>
+	</div>
+      </div>
+    </div>
+    <div id="footer">
+	ФГБУ "Центр геодезии, картографии и ИПД"
+    </div>
+  </body>
+</html>

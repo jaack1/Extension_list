@@ -1,0 +1,94 @@
+caption {
+
+   caption-side: top;
+
+   text-align: left;;
+
+   padding: 10px 0;
+  font-size: 30px;
+
+}
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic);
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #f7f7f7;
+    font-family: 'Roboto', sans-serif;
+}
+
+#header a {
+    color: #4d4d4d;
+    font-size: 20px;
+    font-weight: 100;
+    text-align: left;
+    text-decoration: none;
+    height: 30px;
+    line-height: 30px;
+    display: inline-block;
+}
+
+#header span {
+    padding: 0 38px;
+}
+
+#header {
+    position: fixed;
+    right: 0;
+    left: 0;
+    border: 1px solid #b5b7ba;
+    background-color: #dfdfdf;
+    min-width: 1280px;
+    height: 50px;
+    text-align: center;
+    padding-top: 18px;
+}
+
+#header #selected {
+    color: #000;
+}
+
+
+table {
+  padding-top: 70px;
+
+   background: url("http://html5book.ru/images/blurry.jpg") no-repeat;
+
+   background-position: 100% 55px;
+
+   font-size: 14px;
+
+  text-align: center;
+
+}
+
+
+th {
+
+  font-size: 14px;
+
+  font-weight: normal;
+
+  color: #039;
+  padding: 10px 45px;
+
+}
+td
+ {
+
+  font-size: 14px;
+
+  color: #669;
+
+  border-top: 1px solid #e8edff;
+
+  padding: 20px 45px;
+}
+
+tr:hover td{
+  background: #e8edff;
+}
