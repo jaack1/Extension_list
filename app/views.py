@@ -33,12 +33,12 @@ def numbers():
 	sotr2 = []
 	workbook = load_workbook('/home/jack/flasksite/app/static/docs/en.xlsx')
 	worksheet = workbook.get_active_sheet()
-	def get_user_ip():
-		ip = request.headers.get('X-Real-IP')
-		return ip
-# При расскоменте строчки внизу, можно включить доступ к списку по ip
+# При расскоменте строчек внизу, можно включить доступ к списку по ip
+#	def get_user_ip():
+#		ip = request.headers.get('X-Real-IP')
+#		return ip
 #	ip = get_user_ip()
-	for row in worksheet:
+	for row in worksheet: # парсим .xlsx в массивы, сначала в строчки, потом по столбцам
 		for cell in row:
 			if cell.value is None:
 				sotr2.append(' ')
@@ -78,8 +78,8 @@ def do_admin_login():
 		# Вызовем из класса User метод для проверки логина и пароля по протоколу LDAP
 		ldapaccess = User.try_login(username, password)
 		# В случае совпадения, LDAP пустит пользователя, затем
-		# найдет его ФИО и вернет их в ldapaccess[0]
-		# в случае несовпадения массив останется пустым
+		# найдет его ФИО и вернет True в ldapaccess
+		# в случае несовпадения - ldapaccess будет False
 		if ldapaccess:
 			session['logged_in'] = True
 			session['username'] = User.name
