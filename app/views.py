@@ -8,24 +8,25 @@ import os
 
 app.secret_key = os.urandom(24)
 
-
+# Главная страница
 @app.route('/')
 @app.route('/index')
 def index():
-	def get_user_ip():
+	def get_user_ip(): # Определяем ip пользователя
 		ip = request.headers.get('X-Real-IP')
 		return ip
 	ip = get_user_ip()
-	return render_template("index.html",
+	return render_template("index.html", # ip и титул передается в шаблон
 		title = 'Портал ФГБУ "ЦГКиИПД"',
 		ip = ip)
 
+# Страничка "о портале", содержит техническую и контактную информацию о портале
 @app.route('/about')
 def about():
 	return render_template("about.html",
 		title = 'О Портале')
 
-
+# Страница с таблицей внутренних номеров компании
 @app.route('/numbers')
 def numbers():
 	sotr1 = []
@@ -35,6 +36,7 @@ def numbers():
 	def get_user_ip():
 		ip = request.headers.get('X-Real-IP')
 		return ip
+# При расскоменте строчки внизу, можно включить доступ к списку по ip
 #	ip = get_user_ip()
 	for row in worksheet:
 		for cell in row:
@@ -44,6 +46,7 @@ def numbers():
 				sotr2.append(str(cell.value))
 		sotr1.append(sotr2)
 		sotr2 = []
+# При расскоменте if ниже - включится доступ по логину на сайт
 #	if not session.get('logged_in'):
 #		return render_template('accessdenied.html')
 #	else:
@@ -51,6 +54,7 @@ def numbers():
 	title = 'Список внутренних номеров',
 	sotr1 = sotr1)
 
+# Админка, пока, небыло нужды доделывать ее
 @app.route('/admin')
 def home():
 	if not session.get('logged_in'):
@@ -58,6 +62,7 @@ def home():
 	else:
 		return 'Добро пожаловать в панель администрирования!'
 
+# Страничка входа на сайт, отрендерит шаблон входа если юзер не залогинен
 @app.route('/signin')
 def signin():
 	if not session.get('logged_in'):
@@ -65,13 +70,17 @@ def signin():
 	else:
 		return redirect('index')
 
+# Обработка введенных учётных данных,
 @app.route('/login', methods=['POST'])
 def do_admin_login():
-#	if request.form['password'] == 'iddqdids123' and request.form['username'] == 'admin':
 		username = request.form['username']
 		password = request.form['password']
+		# Вызовем из класса User метод для проверки логина и пароля по протоколу LDAP
 		ldapaccess = User.try_login(username, password)
-		if ldapaccess[0]:
+		# В случае совпадения, LDAP пустит пользователя, затем
+		# найдет его ФИО и вернет их в ldapaccess[0]
+		# в случае несовпадения массив останется пустым
+		if ldapaccess:
 			session['logged_in'] = True
 			session['username'] = User.name
 			return redirect('index')
@@ -79,12 +88,15 @@ def do_admin_login():
 			flash('wrong password')
 			return signin()
 
-
-
+# Следующий кусок использовася для тестов шаблона и пока не нужен
+#	if request.form['password'] == 'iddqdids123' and request.form['username'] == 'admin':
+# 		session['logged_in'] = True
+# 		session['username'] = 'Admin'
 #	else:
 #		flash('wrong password!')
 #	return signin()
 
+# Страничка выхода из учетной записи
 @app.route("/logout")
 def logout():
 	session['logged_in'] = False
